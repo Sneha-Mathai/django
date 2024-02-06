@@ -1,0 +1,35 @@
+<!-- profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* CSS styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Profile</h2>
+        <p>Welcome, {{ user.username }}</p> <!-- Display username -->
+
+        <h3>Profile Information</h3>
+        <p>Bio: {{ userprofile.bio }}</p> <!-- Display bio -->
+        <p>Profile Picture: <img src="{{ userprofile.pic.url }}" alt="Profile Picture"></p> <!-- Display profile picture -->
+
+        <h3>Update Profile</h3>
+        <form action="/update/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio">{{ userprofile.bio }}</textarea>
+
+            <label for="profile_picture">Profile Picture:</label>
+            <input type="file" id="profile_picture" name="profile_picture">
+
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</body>
+</html>
